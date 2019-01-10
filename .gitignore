@@ -1,0 +1,6 @@
+/cw-project-baseline-spring-boot/db
+/cw-project-baseline-spring-boot/*.iml
+/cw-project-baseline-spring-boot/*.ipr
+/cw-project-baseline-spring-boot/*.iws
+/cw-project-baseline-spring-boot/target
+/cw-project-baseline-spring-boot/target/**
