@@ -17,7 +17,7 @@ public class XUser implements Serializable {
     @Column(name = "password", length = 50, unique = true, nullable = false)
     public String password;
 
-    @Column(name = "enable", nullable = false)
+    @Column(name = "enabled", nullable = false)
     public Boolean enable = true;
 
     @Override

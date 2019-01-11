@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan(basePackages = "cw.project.x1.component")
+@ComponentScan(basePackages = {"cw.project.x1.component", "cw.project.x1.config"})
 @SpringBootApplication
 public class X1App {
     private static Logger log = LoggerFactory.getLogger(X1App.class);
