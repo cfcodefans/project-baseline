@@ -19,6 +19,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -28,7 +31,8 @@ import static cw.project.x1.config.SpringSecurityConfig.Role.admin;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+//@EnableWebMvc
+public class SpringSecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
     public static final String BN_USER_DETAILS_MGR = "user-details-mgr";
     private JdbcUserDetailsManager userDetailsService;
 
@@ -40,14 +44,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.csrf()
-//            .disable()
-//            .authorizeRequests()
-//            .anyRequest()
-//            .authenticated()
-//            .and()
-//            .httpBasic()
-//            .authenticationEntryPoint(authEntryPoint);
 
         http.authorizeRequests()
             .antMatchers("/api/admin/**").authenticated()
@@ -56,9 +52,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
             .anyRequest().hasAnyAuthority("admin", "operator")
             .anyRequest().permitAll()
             .and()
-            .logout().logoutSuccessUrl("/").permitAll()
+            .logout().logoutSuccessUrl("/login").permitAll()
             .and()
-            .formLogin().defaultSuccessUrl("/", true).permitAll()
+            .formLogin()
+            .loginPage("/login").permitAll()
+//            .failureForwardUrl("/login-error")
+            .defaultSuccessUrl("/frontend/home.html", true).permitAll()
             .and()
             .csrf().disable();
     }
@@ -68,9 +67,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         JdbcUserDetailsManagerConfigurer<AuthenticationManagerBuilder> judsCfg = auth
             .jdbcAuthentication()
-            .passwordEncoder(new BCryptPasswordEncoder())
+            .passwordEncoder(passwordEncoder)
             .dataSource(ds);
 
         userDetailsService = judsCfg.getUserDetailsService();
@@ -87,7 +87,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         if (CollectionUtils.isEmpty(uList)) {
             log.info("\n\tgoing to create default user");
             String username = "x1";
-            userDetailsService.createUser(new User(username, "x1", adminAuthority));
+            userDetailsService.createUser(new User(username, passwordEncoder.encode("x1"), adminAuthority));
             userDetailsService.addUserToGroup(username, Role.admin.name());
         }
     }

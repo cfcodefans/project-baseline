@@ -11,4 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface GroupRepo extends JpaRepository<XGroup, Long> {
     Logger log = LoggerFactory.getLogger(GroupRepo.class);
+
+
+    XGroup findByName(String groupName);
 }

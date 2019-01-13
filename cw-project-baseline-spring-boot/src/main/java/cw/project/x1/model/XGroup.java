@@ -27,4 +27,7 @@ public class XGroup implements Serializable {
     public int hashCode() {
         return Objects.hash(name);
     }
+
+    @Column(name = "icon", length = 100)
+    public String iconUrl;
 }

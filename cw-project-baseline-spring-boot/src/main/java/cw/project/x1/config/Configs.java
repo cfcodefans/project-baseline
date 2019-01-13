@@ -1,7 +1,10 @@
 package cw.project.x1.config;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -14,7 +17,12 @@ import java.util.Set;
 
 @Configuration
 @EnableSwagger2
-public class Settings {
+public class Configs implements WebMvcConfigurer {
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/login").setViewName("login");
+//        registry.addViewController("/").setViewName("/frontend/home");
+    }
+
     @Bean
     public Docket createRestApi() {
         ApiInfo apiInfo = new ApiInfoBuilder()
@@ -32,4 +40,9 @@ public class Settings {
             .paths(PathSelectors.any())
             .build();
     }
+
+//    @ConfigurationProperties(prefix = "file")
+//    public static class FileStorageCfg {
+//        public String uploadDir;
+//    }
 }

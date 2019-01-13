@@ -14,11 +14,11 @@ public class XUser implements Serializable {
     @Column(name = "username", length = 50)
     public String username;
 
-    @Column(name = "password", length = 50, unique = true, nullable = false)
+    @Column(name = "password", length = 60, unique = true, nullable = false)
     public String password;
 
     @Column(name = "enabled", nullable = false)
-    public Boolean enable = true;
+    public Boolean enable = false;
 
     @Override
     public boolean equals(Object o) {
@@ -32,4 +32,7 @@ public class XUser implements Serializable {
     public int hashCode() {
         return Objects.hash(username);
     }
+
+    @Embedded
+    public XContact contact;
 }
