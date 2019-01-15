@@ -1,0 +1,22 @@
+.btn-clean {
+    position: absolute;
+    z-index: 1;
+    top: 12px;
+    right: 12px;
+    height: 24px;
+    width: 24px;
+    border: none;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.form-btns {
+    display:flex;
+    flex-direction:row-reverse;
+}
+
+.form-btns button {
+    float:right;
+    min-width: 100px;
+    margin: 0px 8px 0px 8px;
+}

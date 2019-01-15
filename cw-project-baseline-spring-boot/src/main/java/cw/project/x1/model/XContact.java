@@ -13,7 +13,7 @@ public class XContact {
     @Column(name = "email", length = 64)
     public String email;
 
-    @Column(name = "phone", length = 20)
+    @Column(name = "phone", length = 20, unique = true, nullable = false)
     public String phone;
 
     @Column(name = "icon", length = 100)

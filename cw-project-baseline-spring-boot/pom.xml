@@ -120,7 +120,7 @@
                         -Xmx2048m
                         -server
                     </jvmArguments>
-                    <fork>true</fork>
+                    <fork>false</fork>
                 </configuration>
                 <version>2.1.1.RELEASE</version>
             </plugin>

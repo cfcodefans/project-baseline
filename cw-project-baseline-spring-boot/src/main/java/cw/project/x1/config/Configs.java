@@ -1,6 +1,5 @@
 package cw.project.x1.config;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -13,14 +12,27 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Set;
 
 @Configuration
 @EnableSwagger2
+//@Import(SpringDataRestConfiguration.class)
 public class Configs implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("login");
 //        registry.addViewController("/").setViewName("/frontend/home");
+    }
+
+    public String hostName;
+
+    {
+        try {
+            hostName = InetAddress.getLocalHost().getHostName();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
     }
 
     @Bean
@@ -32,6 +44,7 @@ public class Configs implements WebMvcConfigurer {
             .build();
 
         return new Docket(DocumentationType.SWAGGER_2)
+            .host(hostName + ":8888")
             .forCodeGeneration(true)
             .protocols(Set.of("http"))
             .apiInfo(apiInfo)

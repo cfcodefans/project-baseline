@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>X1 登录</title>
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!--        format-detection翻译成中文的意思是“格式检测”，顾名思义，它是用来检测html里的一些格式的，那关于meta的format-detection属性主要是有以下几个设置：
@@ -39,11 +38,12 @@ address=yes就开启了点击地址直接跳转至地图的功能,在默认是�
                         <div class="form-label-group">
                             <input name="username"
                                    type="text"
-                                   id="inputEmail"
+                                   id="inputUserName"
                                    class="form-control"
                                    placeholder="用户名"
                                    required autofocus>
-                            <label for="inputEmail">用户名</label>
+                            <label for="inputUserName">用户名</label>
+                            <button type="button" class="btn-clean" onclick="$('#inputUserName')[0].value=''">X</button>
                         </div>
 
                         <div class="form-label-group">
@@ -54,20 +54,22 @@ address=yes就开启了点击地址直接跳转至地图的功能,在默认是�
                                    placeholder="密码"
                                    required>
                             <label for="inputPassword">密码</label>
+                            <button type="button" class="btn-clean" onclick="$('#inputPassword')[0].value=''">X</button>
                         </div>
 
                         <div class="custom-control custom-checkbox mb-3">
                             <input type="checkbox" class="custom-control-input" id="customCheck1">
                             <label class="custom-control-label" for="customCheck1">记住密码</label>
+                            <a target="_blank" href="frontend/register.html" style="float: right;">注册新用户</a>
                         </div>
                         <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">登录</button>
                     </form>
 
                     <div th:if="${param.error}">
-                        Invalid username and password.
+                        用户名或者密码错误
                     </div>
                     <div th:if="${param.logout}">
-                        You have been logged out.
+                        已退出!
                     </div>
                 </div>
             </div>

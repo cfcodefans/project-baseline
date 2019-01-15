@@ -19,29 +19,29 @@ import java.util.Map;
 
 @Repository
 @Transactional
+//@Api("User Entity")
+//@RepositoryRestResource(path = "users")
 public interface UserRepo extends JpaRepository<XUser, Long> {
     Logger log = LoggerFactory.getLogger(UserRepo.class);
 
     //    @Query("select u, g from XUser u, XGroupMember g where u.name = g.username and g.group.name in :groups")
     @Query("select gm, u from XGroupMember gm left join fetch gm.group, XUser u where gm.username = u.username and gm.group.name in :groups")
-    List<Object> findUsersAndGroups(@Param("groups") List<String> groups);
+    List<Object[]> getAllUsersAndGroups(@Param("groups") List<String> groups);
 
     @Query("select gm, u from XGroupMember gm left join fetch gm.group, XUser u where gm.username = u.username")
-    List<Object> findUsersAndGroups();
+    List<Object[]> getAllUsersAndGroups();
 
     default Map<XGroup, List<XUser>> findUserAndGroups(String... groups) {
         Map<XGroup, List<XUser>> reMap = new HashMap<>();
 
-        List<Object> groupsAndUsers = null;
+        List<Object[]> groupsAndUsers = null;
         if (ArrayUtils.isEmpty(groups)) {
-            groupsAndUsers = findUsersAndGroups();
+            groupsAndUsers = getAllUsersAndGroups();
         } else {
-            groupsAndUsers = findUsersAndGroups(List.of(groups));
+            groupsAndUsers = getAllUsersAndGroups(List.of(groups));
         }
         groupsAndUsers
-            .stream()
-            .map(obj -> (Object[]) obj)
-            .forEach(row -> reMap.computeIfAbsent(((XGroupMember) row[0]).group, k -> new ArrayList()).add((XUser) row[1]));
+            .forEach(row -> reMap.computeIfAbsent(((XGroupMember) row[0]).group, k -> new ArrayList<>()).add((XUser) row[1]));
         return reMap;
     }
 }
