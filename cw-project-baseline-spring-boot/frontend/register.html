@@ -44,7 +44,7 @@ address=yes就开启了点击地址直接跳转至地图的功能,在默认是�
                                    placeholder="用户名"
                                    required autofocus>
                             <label for="inputUserName">用户名</label>
-                            <i class="fa fa-times-circle btn-clean" onclick="cleanText(event)"></i>
+                            <i class="fa fa-times-circle btn-clean" onclick="cleanInput(event)"></i>
                         </div>
 
                         <div class="form-label-group">
@@ -55,7 +55,7 @@ address=yes就开启了点击地址直接跳转至地图的功能,在默认是�
                                    placeholder="密码"
                                    required>
                             <label for="inputPassword">密码</label>
-                            <i class="fa fa-times-circle btn-clean" onclick="cleanText(event)"></i>
+                            <i class="fa fa-times-circle btn-clean" onclick="cleanInput(event)"></i>
                         </div>
                         <div class="form-label-group">
                             <input name="real_name"
@@ -65,30 +65,31 @@ address=yes就开启了点击地址直接跳转至地图的功能,在默认是�
                                    placeholder="用户名"
                                    required autofocus>
                             <label for="inputRealName">姓名</label>
-                            <i class="fa fa-times-circle btn-clean" onclick="cleanText(event)"></i>
+                            <i class="fa fa-times-circle btn-clean" onclick="cleanInput(event)"></i>
                         </div>
 
                         <div class="form-label-group">
                             <input name="phone"
-                                   type="text"
+                                   type="tel"
+                                   pattern="^1(3|4|5|7|8)\d{9}$"
                                    id="inputPhone"
                                    class="form-control"
                                    placeholder="电话"
                                    inputmode="tel"
                                    required autofocus>
                             <label for="inputPhone">电话</label>
-                            <i class="fa fa-times-circle btn-clean" onclick="cleanText(event)"></i>
+                            <i class="fa fa-times-circle btn-clean" onclick="cleanInput(event)"></i>
                         </div>
                         <div class="form-label-group">
                             <input name="email"
-                                   type="text"
+                                   type="email"
                                    id="inputMail"
                                    class="form-control"
                                    placeholder="邮件"
                                    inputmode="email"
                                    required autofocus>
                             <label for="inputMail">邮件</label>
-                            <i class="fa fa-times-circle btn-clean" onclick="cleanText(event)"></i>
+                            <i class="fa fa-times-circle btn-clean" onclick="cleanInput(event)"></i>
                         </div>
                         <div class="input-group">
                             <div class="custom-control custom-checkbox mb-3 custom-control-inline">
