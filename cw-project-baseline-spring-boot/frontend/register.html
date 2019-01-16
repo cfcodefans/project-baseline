@@ -26,6 +26,7 @@ address=yes就开启了点击地址直接跳转至地图的功能,在默认是�
     <link href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"/>
     <link href="css/style.css" rel="stylesheet"/>
     <link href="css/login.css" rel="stylesheet"/>
+    <script src="js/simple.js"></script>
 </head>
 <body>
 <div class="container">
@@ -43,7 +44,7 @@ address=yes就开启了点击地址直接跳转至地图的功能,在默认是�
                                    placeholder="用户名"
                                    required autofocus>
                             <label for="inputUserName">用户名</label>
-                            <i class="fa fa-times-circle btn-clean" onclick="$('#inputUserName')[0].value=''"></i>
+                            <i class="fa fa-times-circle btn-clean" onclick="cleanText(event)"></i>
                         </div>
 
                         <div class="form-label-group">
@@ -54,7 +55,7 @@ address=yes就开启了点击地址直接跳转至地图的功能,在默认是�
                                    placeholder="密码"
                                    required>
                             <label for="inputPassword">密码</label>
-                            <i class="fa fa-times-circle btn-clean" onclick="$('#inputPassword')[0].value=''"></i>
+                            <i class="fa fa-times-circle btn-clean" onclick="cleanText(event)"></i>
                         </div>
                         <div class="form-label-group">
                             <input name="real_name"
@@ -64,7 +65,7 @@ address=yes就开启了点击地址直接跳转至地图的功能,在默认是�
                                    placeholder="用户名"
                                    required autofocus>
                             <label for="inputRealName">姓名</label>
-                            <i class="fa fa-times-circle btn-clean" onclick="$('#inputRealName')[0].value=''"></i>
+                            <i class="fa fa-times-circle btn-clean" onclick="cleanText(event)"></i>
                         </div>
 
                         <div class="form-label-group">
@@ -76,8 +77,7 @@ address=yes就开启了点击地址直接跳转至地图的功能,在默认是�
                                    inputmode="tel"
                                    required autofocus>
                             <label for="inputPhone">电话</label>
-                            <button type="button" class="btn-clean" onclick="$('#inputPhone')[0].value=''">X
-                            </button>
+                            <i class="fa fa-times-circle btn-clean" onclick="cleanText(event)"></i>
                         </div>
                         <div class="form-label-group">
                             <input name="email"
@@ -88,8 +88,7 @@ address=yes就开启了点击地址直接跳转至地图的功能,在默认是�
                                    inputmode="email"
                                    required autofocus>
                             <label for="inputMail">邮件</label>
-                            <button type="button" class="btn-clean" onclick="$('#inputMail')[0].value=''">X
-                            </button>
+                            <i class="fa fa-times-circle btn-clean" onclick="cleanText(event)"></i>
                         </div>
                         <div class="input-group">
                             <div class="custom-control custom-checkbox mb-3 custom-control-inline">
@@ -112,9 +111,6 @@ address=yes就开启了点击地址直接跳转至地图的功能,在默认是�
     </div>
 </div>
 
-<script type="javascript">
-
-</script>
 
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>

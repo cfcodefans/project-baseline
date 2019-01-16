@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>X1 登录</title>
-    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!--        format-detection翻译成中文的意思是“格式检测”，顾名思义，它是用来检测html里的一些格式的，那关于meta的format-detection属性主要是有以下几个设置：
 meta name="format-detection" content="telephone=no"
@@ -24,7 +23,10 @@ address=no禁止跳转至地图！
 address=yes就开启了点击地址直接跳转至地图的功能,在默认是情况下就是开启！   -->
     <meta name="format-detection" content="telephone=no">
     <link href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"/>
+    <link href="frontend/css/style.css" rel="stylesheet"/>
     <link href="frontend/css/login.css" rel="stylesheet"/>
+    <script src="frontend/js/simple.js"></script>
 </head>
 <body>
 
@@ -43,7 +45,7 @@ address=yes就开启了点击地址直接跳转至地图的功能,在默认是�
                                    placeholder="用户名"
                                    required autofocus>
                             <label for="inputUserName">用户名</label>
-                            <button type="button" class="btn-clean" onclick="$('#inputUserName')[0].value=''">X</button>
+                            <i class="fa fa-times-circle btn-clean" onclick="cleanText(event)"></i>
                         </div>
 
                         <div class="form-label-group">
@@ -54,7 +56,7 @@ address=yes就开启了点击地址直接跳转至地图的功能,在默认是�
                                    placeholder="密码"
                                    required>
                             <label for="inputPassword">密码</label>
-                            <button type="button" class="btn-clean" onclick="$('#inputPassword')[0].value=''">X</button>
+                            <i class="fa fa-times-circle btn-clean" onclick="cleanText(event)"></i>
                         </div>
 
                         <div class="custom-control custom-checkbox mb-3">
