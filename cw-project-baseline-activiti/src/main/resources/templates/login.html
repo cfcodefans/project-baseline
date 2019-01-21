@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>X1 登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!--        format-detection翻译成中文的意思是“格式检测”，顾名思义，它是用来检测html里的一些格式的，那关于meta的format-detection属性主要是有以下几个设置：
+meta name="format-detection" content="telephone=no"
+meta name="format-detection" content="email=no"
+meta name="format-detection" content="adress=no"
+也可以连写：meta name="format-detection" content="telephone=no,email=no,adress=no"
+下面具体说下每个设置的作用：
+一、telephone
+你明明写的一串数字没加链接样式，而iPhone会自动把你这个文字加链接样式、并且点击这个数字还会自动拨号！想去掉这个拨号链接该如何操作呢？这时我们的meta又该大显神通了，代码如下：
+telephone=no就禁止了把数字转化为拨号链接！
+telephone=yes就开启了把数字转化为拨号链接，要开启转化功能，这个meta就不用写了,在默认是情况下就是开启！
+二、email
+告诉设备不识别邮箱，点击之后不自动发送
+email=no禁止作为邮箱地址！
+email=yes就开启了把文字默认为邮箱地址，这个meta就不用写了,在默认是情况下就是开启！
+三、adress
+address=no禁止跳转至地图！
+address=yes就开启了点击地址直接跳转至地图的功能,在默认是情况下就是开启！   -->
+    <meta name="format-detection" content="telephone=no">
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"/>
+    <link href="frontend/css/style.css" rel="stylesheet"/>
+    <link href="frontend/css/login.css" rel="stylesheet"/>
+    <script src="frontend/js/simple.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center">X1 项目</h5>
+                    <form class="form-signin" th:action="@{/login}" method="post">
+                        <div class="form-label-group">
+                            <input name="username"
+                                   type="text"
+                                   id="inputUserName"
+                                   class="form-control"
+                                   placeholder="用户名"
+                                   required autofocus>
+                            <label for="inputUserName">用户名</label>
+                            <i class="fa fa-times-circle btn-clean" onclick="cleanInput(event)"></i>
+                        </div>
+
+                        <div class="form-label-group">
+                            <input name="password"
+                                   type="password"
+                                   id="inputPassword"
+                                   class="form-control"
+                                   placeholder="密码"
+                                   required>
+                            <label for="inputPassword">密码</label>
+                            <i class="fa fa-times-circle btn-clean" onclick="cleanInput(event)"></i>
+                        </div>
+
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">记住密码</label>
+                            <a target="_blank" href="frontend/register.html" style="float: right;">注册新用户</a>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">登录</button>
+                    </form>
+
+                    <div th:if="${param.error}">
+                        用户名或者密码错误
+                    </div>
+                    <div th:if="${param.logout}">
+                        已退出!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.14.6/esm/popper.min.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>
