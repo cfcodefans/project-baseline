@@ -4,3 +4,10 @@
 /cw-project-baseline-spring-boot/*.iws
 /cw-project-baseline-spring-boot/target
 /cw-project-baseline-spring-boot/target/**
+**/.mvn/**
+/cw-project-baseline-activiti/*.cmd
+/cw-project-baseline-activiti/*.iml
+/cw-project-baseline-activiti/mvnw
+**/.idea/**
+**/target/**
+**/nodemodules

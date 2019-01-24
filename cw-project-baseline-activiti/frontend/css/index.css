@@ -1,0 +1,166 @@
+:root {
+    --bgc: rgb(220, 236, 237);
+    --dark-bgc: rgb(192, 223, 224);
+    --nav-width: 300px;
+    --topbar-height: 44px;
+}
+
+body {
+  background: #9CECFB;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.h_title {
+    text-align:center;
+}
+
+.logo {
+    width: 300px;
+    height: 300px;
+    margin: 10px auto 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: lightblue;
+    flex-direction:column;
+}
+
+.logo img {
+    border-radius: 100px;
+    width: 200px;
+    height: 200px;
+}
+
+#wrap {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: var(--bgc);
+}
+
+#cfg_pane {
+    height: 100%;
+    width: 100%;
+    background-color: var(--bgc);
+    display: flex;
+    flex-direction: row;
+}
+
+#cfg_pane header {
+    flex: var(--nav-width);
+    align-self: stretch;
+    background-color: var(--dark-bgc);
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    max-width: 300px;
+}
+
+#cfg_pane header nav {
+    display: flex;
+    flex-direction: column;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+#cfg_pane article {
+    flex: 15;
+    background-color: var(--bgc);
+}
+
+#cfg_pane article #sc_sect {
+    width: 100%;
+    height: 100%;
+    background-color: var(--bgc);
+}
+
+.table th,
+.table td {
+    vertical-align: middle !important;
+}
+
+.table th {
+    text-align: left;
+}
+
+thead thead th {
+    background-color: #4d9999;
+    color: white;
+}
+
+thead tr th {
+    height: 37px;
+    padding: 0px !important;
+}
+
+thead tr th div {
+    background-color: #4d9999;
+    color: white;
+    position: fixed;
+    width: 100%;
+    height: 37px;
+    z-index: 2;
+    top: 44px;
+    padding: 8px;
+}
+
+.table_topbar {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    position: fixed;
+    width: calc(100% - 300px);
+    height: 44px;
+    top: 0px;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 10px 0px 10px;
+}
+
+.table_wrapper {
+    position: fixed;
+    top: 44px;
+    overflow: auto;
+    width: calc(100% - 300px);
+    height: 100%;
+}
+
+.active>.nav-link {
+    font-weight: bolder;
+}
+
+.server_nav {
+    margin: 6px;
+    max-width: calc(var(--nav-width) - 30px);
+    max-height: 70%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.server_nav li a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: calc(var(--nav-width) - 50px);
+}
+
+td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 250px;
+}
+
+option {
+    font-family: monospace !important;
+}
+
+.control-label {
+    display: block !important;
+}

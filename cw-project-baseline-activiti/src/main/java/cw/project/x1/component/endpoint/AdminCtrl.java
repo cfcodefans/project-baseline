@@ -43,7 +43,6 @@ public class AdminCtrl {
     @Autowired
     private GroupRepo gr;
 
-
     @ApiOperation("admin api endpoint info")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/info")
     public String info() {

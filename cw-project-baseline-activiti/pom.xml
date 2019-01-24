@@ -86,13 +86,53 @@
             <version>LATEST</version>
         </dependency>
 
+        <!--
+                <dependency>
+                    <groupId>org.activiti</groupId>
+                    <artifactId>activiti-spring-boot-starter-basic</artifactId>
+                    <version>${activiti.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.activiti</groupId>
+                    <artifactId>activiti-spring-boot-starter-rest-api</artifactId>
+                    <version>${activiti.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.activiti</groupId>
+                    <artifactId>activiti-spring-boot-starter-integration</artifactId>
+                    <version>${activiti.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.activiti</groupId>
+                    <artifactId>activiti-spring-boot-starter-actuator</artifactId>
+                    <version>${activiti.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.activiti</groupId>
+                    <artifactId>activiti-spring-boot-starter-security</artifactId>
+                    <version>${activiti.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.activiti</groupId>
+                    <artifactId>activiti-spring-boot-starter-jpa</artifactId>
+                    <version>${activiti.version}</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.activiti</groupId>
+                    <artifactId>activiti-spring-boot-samples</artifactId>
+                    <version>${activiti.version}</version>
+                    <scope>test</scope>
+                    <type>pom</type>
+                </dependency>
+        -->
         <dependency>
             <groupId>org.activiti</groupId>
             <artifactId>activiti-spring-boot-starter</artifactId>
-            <version>${activiti.version}</version>
+            <version>7.0.0.Beta5</version>
         </dependency>
-
     </dependencies>
+
 
     <build>
         <plugins>

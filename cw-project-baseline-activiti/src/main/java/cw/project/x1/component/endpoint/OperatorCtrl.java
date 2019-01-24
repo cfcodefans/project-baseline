@@ -14,13 +14,13 @@ import java.time.Instant;
 import static java.lang.String.format;
 
 @RestController
-@RequestMapping("/api/operator")
+@RequestMapping("/api/GROUP_OPERATOR")
 public class OperatorCtrl {
     private static Logger log = LoggerFactory.getLogger(OperatorCtrl.class);
 
-    @ApiOperation("operator api endpoint info")
+    @ApiOperation("GROUP_OPERATOR api endpoint info")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/info")
     public String info() {
-        return format("operator api endpoint responded at %s", Date.from(Instant.now()));
+        return format("GROUP_OPERATOR api endpoint responded at %s", Date.from(Instant.now()));
     }
 }

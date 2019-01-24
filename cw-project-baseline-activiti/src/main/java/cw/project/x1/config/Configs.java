@@ -1,5 +1,9 @@
 package cw.project.x1.config;
 
+import cw.project.x1.component.ActivitiUserGroupMgr;
+import org.activiti.spring.SpringProcessEngineConfiguration;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -19,10 +23,10 @@ import java.util.Set;
 @Configuration
 @EnableSwagger2
 //@Import(SpringDataRestConfiguration.class)
+//@ImportResource("classpath:activiti/activiti.cfg.xml")
 public class Configs implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("login");
-//        registry.addViewController("/").setViewName("/frontend/home");
     }
 
     public String hostName;
@@ -58,4 +62,12 @@ public class Configs implements WebMvcConfigurer {
 //    public static class FileStorageCfg {
 //        public String uploadDir;
 //    }
+
+    @Autowired
+    private ActivitiUserGroupMgr userManager;
+
+    @Bean
+    InitializingBean processEngineInitializer(SpringProcessEngineConfiguration processEngineConfiguration) {
+        return () -> processEngineConfiguration.setUserGroupManager(userManager);
+    }
 }

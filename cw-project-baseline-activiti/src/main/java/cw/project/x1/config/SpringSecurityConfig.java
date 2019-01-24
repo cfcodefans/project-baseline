@@ -9,28 +9,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configurers.provisioning.JdbcUserDetailsManagerConfigurer;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
-import org.springframework.util.CollectionUtils;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.sql.DataSource;
-import java.util.List;
-
-import static cw.project.x1.config.SpringSecurityConfig.Role.admin;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 //@EnableWebMvc
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
     public static final String BN_USER_DETAILS_MGR = "user-details-mgr";
@@ -38,8 +28,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter implement
 
     private static Logger log = LoggerFactory.getLogger(SpringSecurityConfig.class);
 
-    enum Role {
-        admin, operator
+    public enum Groups {
+        GROUP_ADMIN, GROUP_OPERATOR
+    }
+
+    public enum Roles {
+        ROLE_ADMIN, ROLE_OPERATOR
     }
 
     @Override
@@ -49,7 +43,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter implement
             .antMatchers("/api/admin/**").authenticated()
             .anyRequest().hasAuthority("admin")
             .antMatchers("/api/operator/**").authenticated()
-            .anyRequest().hasAnyAuthority("admin", "operator")
+            .anyRequest().hasAnyAuthority("admin", "GROUP_OPERATOR")
             .anyRequest().permitAll()
             .and()
             .logout().logoutSuccessUrl("/login").permitAll()
@@ -77,19 +71,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter implement
         userDetailsService.setEnableAuthorities(false);
         userDetailsService.setEnableGroups(true);
 
-        List<GrantedAuthority> adminAuthority = List.of(new SimpleGrantedAuthority(admin.name()));
-        List<String> grpList = userDetailsService.findAllGroups();
-        if (CollectionUtils.isEmpty(grpList)) {
-            log.info("\n\tgoing to create default groups");
-            userDetailsService.createGroup(admin.name(), adminAuthority);
-        }
-        List<String> uList = userDetailsService.findUsersInGroup(admin.name());
-        if (CollectionUtils.isEmpty(uList)) {
-            log.info("\n\tgoing to create default user");
-            String username = "x1";
-            userDetailsService.createUser(new User(username, passwordEncoder.encode("x1"), adminAuthority));
-            userDetailsService.addUserToGroup(username, Role.admin.name());
-        }
     }
 
     @Bean(name = BN_USER_DETAILS_MGR)

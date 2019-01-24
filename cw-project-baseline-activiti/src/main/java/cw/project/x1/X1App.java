@@ -4,11 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan(basePackages = {"cw.project.x1.component", "cw.project.x1.config"})
-@SpringBootApplication
+@SpringBootApplication(
+    exclude = SecurityAutoConfiguration.class,
+    scanBasePackages = {"cw.project.x1.component", "cw.project.x1.config", "cw.project.x1.model"})
 public class X1App {
     private static Logger log = LoggerFactory.getLogger(X1App.class);
 
@@ -29,4 +30,7 @@ public class X1App {
         }
         log.info("finished");
     }
+
+
+
 }
