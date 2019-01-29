@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-//@Api("XGroupMember Entity")
-//@RepositoryRestResource(path = "group-member")
+@Api("XGroupMember Entity")
+@RepositoryRestResource(path = "dr-group-member")
 public interface GroupMemberRepo extends JpaRepository<XGroupMember, Long> {
     Logger log = LoggerFactory.getLogger(GroupMemberRepo.class);
 }

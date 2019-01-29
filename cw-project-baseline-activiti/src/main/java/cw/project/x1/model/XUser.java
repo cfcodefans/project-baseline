@@ -1,12 +1,11 @@
 package cw.project.x1.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "users")
-public class XUser implements Serializable {
+public class XUser extends XEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;

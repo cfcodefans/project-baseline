@@ -6,3 +6,6 @@ java -jar ./tools/swagger-codegen-cli.jar generate -l typescript-fetch -i http:/
 
 
 http://localhost:8888/frontend/swagger-ui.html#/
+
+# spring data rest 
+http://localhost:8888/api/data/xUsers/1

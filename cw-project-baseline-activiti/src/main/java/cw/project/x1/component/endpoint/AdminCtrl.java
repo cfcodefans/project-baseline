@@ -6,6 +6,7 @@ import cw.project.x1.component.repository.UserRepo;
 import cw.project.x1.config.SpringSecurityConfig;
 import cw.project.x1.model.XGroup;
 import cw.project.x1.model.XUser;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
@@ -31,6 +32,7 @@ import static java.lang.String.format;
 
 @RestController
 @RequestMapping(path = "/api/admin", produces = MediaType.APPLICATION_JSON_VALUE)
+@Api("AdminCtrl")
 public class AdminCtrl {
     private static Logger log = LoggerFactory.getLogger(AdminCtrl.class);
 

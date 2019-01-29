@@ -1,12 +1,11 @@
 package cw.project.x1.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "group_members")
-public class XGroupMember implements Serializable {
+public class XGroupMember extends XEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

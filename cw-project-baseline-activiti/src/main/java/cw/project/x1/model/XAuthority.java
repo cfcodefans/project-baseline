@@ -1,12 +1,11 @@
 package cw.project.x1.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "authorities ", indexes = @Index(columnList = "username,authority", unique = true))
-public class XAuthority implements Serializable {
+public class XAuthority extends XEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;

@@ -1,62 +1,58 @@
 package cw.project.x1.config;
 
 import cw.project.x1.component.ActivitiUserGroupMgr;
+import cw.project.x1.model.*;
 import org.activiti.spring.SpringProcessEngineConfiguration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
+import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.Set;
+import java.util.Optional;
 
 @Configuration
-@EnableSwagger2
-//@Import(SpringDataRestConfiguration.class)
 //@ImportResource("classpath:activiti/activiti.cfg.xml")
+@EnableJpaAuditing(auditorAwareRef = "auditorAware")
 public class Configs implements WebMvcConfigurer {
+
+    @Bean
+    public RepositoryRestConfigurer repositoryRestConfigurer() {
+
+        return new RepositoryRestConfigurer() {
+            @Override
+            public void configureRepositoryRestConfiguration(
+                RepositoryRestConfiguration config) {
+                config.exposeIdsFor(XUser.class,
+                    XGroup.class,
+                    XGroupAuthority.class,
+                    XGroupMember.class,
+                    XAuthority.class);
+            }
+        };
+    }
+
+    @Bean
+    public AuditorAware<String> auditorAware() {
+        return () -> {
+            UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            return Optional.ofNullable(ud).map(UserDetails::getUsername);
+        };
+    }
+
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("login");
     }
 
-    public String hostName;
-
-    {
-        try {
-            hostName = InetAddress.getLocalHost().getHostName();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Bean
-    public Docket createRestApi() {
-        ApiInfo apiInfo = new ApiInfoBuilder()
-            .title("X1 Service API")
-            .description("api txType X1 service")
-            .version("1.0")
-            .build();
-
-        return new Docket(DocumentationType.SWAGGER_2)
-            .host(hostName + ":8888")
-            .forCodeGeneration(true)
-            .protocols(Set.of("http"))
-            .apiInfo(apiInfo)
-            .select()
-            .apis(RequestHandlerSelectors.basePackage("cw.project.x1.component.endpoint"))
-            .paths(PathSelectors.any())
-            .build();
-    }
 
 //    @ConfigurationProperties(prefix = "file")
 //    public static class FileStorageCfg {
@@ -70,4 +66,7 @@ public class Configs implements WebMvcConfigurer {
     InitializingBean processEngineInitializer(SpringProcessEngineConfiguration processEngineConfiguration) {
         return () -> processEngineConfiguration.setUserGroupManager(userManager);
     }
+
+    private static Logger log = LoggerFactory.getLogger(Configs.class);
+
 }

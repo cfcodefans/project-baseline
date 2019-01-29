@@ -1,12 +1,11 @@
 package cw.project.x1.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "group_authorities")
-public class XGroupAuthority implements Serializable {
+public class XGroupAuthority extends XEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -18,6 +17,9 @@ public class XGroupAuthority implements Serializable {
 
     @Column(name = "authority", length = 50, nullable = false)
     public String authority;
+
+    @Column(name = "description", length = 4096)
+    public String description;
 
     @Override
     public boolean equals(Object o) {
