@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
     <title>X1 主页</title>
@@ -24,38 +25,40 @@ email=yes就开启了把文字默认为邮箱地址，这个meta就不用写了,
 address=no禁止跳转至地图！
 address=yes就开启了点击地址直接跳转至地图的功能,在默认是情况下就是开启！   -->
     <meta name="format-detection" content="telephone=yes,address=yes,email=yes">
-    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"/>
-    <link href="/frontend/css/form.css" rel="stylesheet"/>
-    <link href="/frontend/css/index.css" rel="stylesheet"/>
-    <link href="/frontend/css/card.css" rel="stylesheet"/>
-    <script src="/frontend/js/simple.js"></script>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <link href="/frontend/resources/css/form.css" rel="stylesheet" />
+    <link href="/frontend/resources/css/index.css" rel="stylesheet" />
+    <link href="/frontend/resources/css/card.css" rel="stylesheet" />
+    <script src="/frontend/resources/js/simple.js"></script>
 </head>
+
 <body>
 
-<div id="wrap">
-    <div id="cfg_pane">
-        <header>
-            <h1 class="h_title">X1 系统</h1>
-            <figure class="logo">
-                <img src="./imgs/person-placeholder.jpg"/>
-                <figcaption>欢迎 {user.name}</figcaption>
-                <a href="/logout">登出</a>
-            </figure>
-            <nav id="cfg_nav">
-            </nav>
-        </header>
-        <article id="cfg_sect" style="overflow-y:auto">
-        </article>
+    <div id="wrap">
+        <div id="x1_pane">
+            <header>
+                <h1 class="h_title">X1 系统</h1>
+                <figure class="logo">
+                    <img src="./imgs/person-placeholder.jpg" />
+                    <figcaption>欢迎 {user.name}</figcaption>
+                    <a href="/logout">登出</a>
+                </figure>
+                <nav id="x1_nav">
+                </nav>
+            </header>
+            <article id="x1_sect" style="overflow-y:auto">
+            </article>
+        </div>
     </div>
-</div>
 
 
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
-<script src="https://cdn.bootcss.com/popper.js/1.14.6/esm/popper.min.js"></script>
-<script type="text/javascript">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.14.6/esm/popper.min.js"></script>
+    <script type="text/javascript">
 
-</script>
+    </script>
 </body>
+
 </html>

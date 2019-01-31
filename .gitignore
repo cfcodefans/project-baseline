@@ -10,4 +10,5 @@
 /cw-project-baseline-activiti/mvnw
 **/.idea/**
 **/target/**
-**/nodemodules
+**/node_modules
+**/node_modules/**

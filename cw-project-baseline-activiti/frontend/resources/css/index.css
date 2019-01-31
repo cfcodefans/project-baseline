@@ -42,7 +42,7 @@ body {
     background-color: var(--bgc);
 }
 
-#cfg_pane {
+#x1_pane {
     height: 100%;
     width: 100%;
     background-color: var(--bgc);
@@ -50,7 +50,7 @@ body {
     flex-direction: row;
 }
 
-#cfg_pane header {
+#x1_pane header {
     flex: var(--nav-width);
     align-self: stretch;
     background-color: var(--dark-bgc);
@@ -60,19 +60,19 @@ body {
     max-width: 300px;
 }
 
-#cfg_pane header nav {
+#x1_pane header nav {
     display: flex;
     flex-direction: column;
     padding-left: 6px;
     padding-right: 6px;
 }
 
-#cfg_pane article {
+#x1_pane article {
     flex: 15;
     background-color: var(--bgc);
 }
 
-#cfg_pane article #sc_sect {
+#x1_pane article #sc_sect {
     width: 100%;
     height: 100%;
     background-color: var(--bgc);
