@@ -4,6 +4,8 @@ import cw.project.x1.commons.ServiceRespDTO;
 import cw.project.x1.component.repository.GroupRepo;
 import cw.project.x1.component.repository.UserRepo;
 import cw.project.x1.config.SpringSecurityConfig;
+import cw.project.x1.dto.GroupDTO;
+import cw.project.x1.dto.UserDTO;
 import cw.project.x1.model.XGroup;
 import cw.project.x1.model.XUser;
 import io.swagger.annotations.Api;
@@ -14,17 +16,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotBlank;
-import java.io.Serializable;
 import java.sql.Date;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -49,58 +49,6 @@ public class AdminCtrl {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/info")
     public String info() {
         return format("admin api endpoint responded at %s", Date.from(Instant.now()));
-    }
-
-    public static class GroupDTO implements Serializable {
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (!(o instanceof GroupDTO)) return false;
-            GroupDTO groupDTO = (GroupDTO) o;
-            return Objects.equals(group, groupDTO.group);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(group);
-        }
-
-        public XGroup group;
-        public List<XUser> users = new ArrayList<>();
-
-        public GroupDTO() {
-        }
-
-        public GroupDTO(XGroup group, List<XUser> users) {
-            this.group = group;
-            this.users = users;
-        }
-    }
-
-    public static class UserDTO implements Serializable {
-        public XGroup group;
-        public XUser user;
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (!(o instanceof UserDTO)) return false;
-            UserDTO userDTO = (UserDTO) o;
-            return Objects.equals(user, userDTO.user);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(user);
-        }
-
-        public UserDTO() {
-        }
-
-        public UserDTO(XGroup group, XUser user) {
-            this.group = group;
-            this.user = user;
-        }
     }
 
     @ApiOperation("get all users by group")
@@ -168,5 +116,15 @@ public class AdminCtrl {
 
         XUser saved = ur.saveAndFlush(user);
         return new ServiceRespDTO<>(new UserDTO(g, saved));
+    }
+
+    @Autowired
+    @Qualifier("current-user")
+    public UserDetails currentUser;
+
+    @ApiOperation("current user")
+    @GetMapping(path = "current-user")
+    public ServiceRespDTO<UserDTO> getCurrentUser() {
+        return null;
     }
 }

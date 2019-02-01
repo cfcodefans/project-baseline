@@ -51,7 +51,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter implement
             .formLogin()
             .loginPage("/login").permitAll()
 //            .failureForwardUrl("/login-error")
-            .defaultSuccessUrl("/frontend/home.html", true).permitAll()
+            .defaultSuccessUrl("/frontend/public/home.html", true).permitAll()
             .and()
             .csrf().disable();
     }

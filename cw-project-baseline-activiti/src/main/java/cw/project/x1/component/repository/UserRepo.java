@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,6 +37,10 @@ public interface UserRepo extends JpaRepository<XUser, Long> {
     @Query("select gm, u from XGroupMember gm left join fetch gm.group, XUser u where gm.username = u.username")
     List<Object[]> getAllUsersAndGroups();
 
+    @ApiOperation("find user and groups")
+    @Query("select gm, u from XGroupMember gm left join fetch gm.group, XUser u where gm.username = u.username and u.username=:username")
+    List<Object[]> getAllUserAndGroups(@Param("username") String username);
+
     @ApiOperation("find user and group mapping by groups")
     default Map<XGroup, List<XUser>> findUserAndGroups(String... groups) {
         Map<XGroup, List<XUser>> reMap = new HashMap<>();
@@ -50,4 +55,5 @@ public interface UserRepo extends JpaRepository<XUser, Long> {
             .forEach(row -> reMap.computeIfAbsent(((XGroupMember) row[0]).group, k -> new ArrayList<>()).add((XUser) row[1]));
         return reMap;
     }
+
 }

@@ -1,6 +1,6 @@
 :root {
-    --bgc: rgb(220, 236, 237);
-    --dark-bgc: rgb(192, 223, 224);
+    /* --bgc: rgb(220, 236, 237);
+    --dark-bgc: rgb(192, 223, 224); */
     --nav-width: 300px;
     --topbar-height: 44px;
 }
@@ -25,7 +25,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: lightblue;
+    /* background: lightblue; */
     flex-direction:column;
 }
 
@@ -39,13 +39,13 @@ body {
     position: fixed;
     height: 100%;
     width: 100%;
-    background-color: var(--bgc);
+    /* background-color: var(--bgc); */
 }
 
 #x1_pane {
     height: 100%;
     width: 100%;
-    background-color: var(--bgc);
+    /* background-color: var(--bgc); */
     display: flex;
     flex-direction: row;
 }
@@ -53,7 +53,7 @@ body {
 #x1_pane header {
     flex: var(--nav-width);
     align-self: stretch;
-    background-color: var(--dark-bgc);
+    /* background-color: var(--dark-bgc); */
     display: flex;
     align-items: stretch;
     flex-direction: column;
@@ -69,13 +69,13 @@ body {
 
 #x1_pane article {
     flex: 15;
-    background-color: var(--bgc);
+    /* background-color: var(--bgc); */
 }
 
 #x1_pane article #sc_sect {
     width: 100%;
     height: 100%;
-    background-color: var(--bgc);
+    /* background-color: var(--bgc); */
 }
 
 .table th,
@@ -98,7 +98,6 @@ thead tr th {
 }
 
 thead tr th div {
-    background-color: #4d9999;
     color: white;
     position: fixed;
     width: 100%;

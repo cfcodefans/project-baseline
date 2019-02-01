@@ -18,9 +18,6 @@ public class XGroupAuthority extends XEntity {
     @Column(name = "authority", length = 50, nullable = false)
     public String authority;
 
-    @Column(name = "description", length = 4096)
-    public String description;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
