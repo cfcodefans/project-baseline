@@ -109,7 +109,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = __importStar(__webpack_require__(/*! react */ "react"));
 const react_dom_1 = __importDefault(__webpack_require__(/*! react-dom */ "react-dom"));
 const App = () => (React.createElement("div", null,
-    React.createElement("h1", null, "X1 Project, built by C/W")));
+    React.createElement("h1", null, "X1 Project, built by C/W 999")));
 react_dom_1.default.render(React.createElement(App, null), document.getElementById("x1_sect"));
 
 

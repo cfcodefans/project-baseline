@@ -42,11 +42,11 @@ public class Configs implements WebMvcConfigurer {
         };
     }
 
-    @Bean
-    @Qualifier("current-user")
-    public UserDetails getCurrentUser() {
-        return (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    }
+//    @Bean
+//    @Qualifier("current-user")
+//    public UserDetails getCurrentUser() {
+//        return (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//    }
 
     @Bean
     public AuditorAware<String> auditorAware() {

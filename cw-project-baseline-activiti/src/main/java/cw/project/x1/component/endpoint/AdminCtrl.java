@@ -115,12 +115,13 @@ public class AdminCtrl {
         }
 
         XUser saved = ur.saveAndFlush(user);
-        return new ServiceRespDTO<>(new UserDTO(g, saved));
+        // return new ServiceRespDTO<>(new UserDTO(g, saved));
+        return null;
     }
 
-    @Autowired
-    @Qualifier("current-user")
-    public UserDetails currentUser;
+//    @Autowired
+//    @Qualifier("current-user")
+//    public UserDetails currentUser;
 
     @ApiOperation("current user")
     @GetMapping(path = "current-user")
