@@ -7,7 +7,10 @@ const CWD = FS.realpathSync(process.cwd())
 //node dependenices on backend are placed in node_modules
 
 module.exports = {
-    entry: Path.resolve(CWD, "src/index.tsx"),
+    entry: {
+        main: Path.resolve(CWD, "src/index.tsx"),
+        registration: Path.resolve(CWD, "src/registration.ts")
+    },
     output: {
         filename: "index.js",
         path: Path.resolve(CWD, "resources/js"),

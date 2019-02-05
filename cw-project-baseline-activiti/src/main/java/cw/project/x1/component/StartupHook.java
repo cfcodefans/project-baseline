@@ -16,7 +16,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
-import static cw.project.x1.config.SpringSecurityConfig.Groups.GROUP_ADMIN;
+import static cw.project.x1.component.ActivitiUserGroupMgr.Groups.GROUP_ADMIN;
 
 @Component
 public class StartupHook implements ApplicationListener<ContextRefreshedEvent> {

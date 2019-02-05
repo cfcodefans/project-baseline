@@ -18,6 +18,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.sql.DataSource;
 
+import static cw.project.x1.component.ActivitiUserGroupMgr.Roles.ROLE_ADMIN;
+import static cw.project.x1.component.ActivitiUserGroupMgr.Roles.ROLE_OPERATOR;
+
 @Configuration
 @EnableWebSecurity
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -28,22 +31,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter implement
 
     private static Logger log = LoggerFactory.getLogger(SpringSecurityConfig.class);
 
-    public enum Groups {
-        GROUP_ADMIN, GROUP_OPERATOR
-    }
-
-    public enum Roles {
-        ROLE_ADMIN, ROLE_OPERATOR
-    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
             .antMatchers("/api/admin/**").authenticated()
-            .anyRequest().hasAuthority("admin")
-            .antMatchers("/api/operator/**").authenticated()
-            .anyRequest().hasAnyAuthority("admin", "GROUP_OPERATOR")
+            .anyRequest().hasAuthority(ROLE_ADMIN.name())
+            .antMatchers("/api/operator/**", "/api/files/**").authenticated()
+            .anyRequest().hasAnyAuthority(ROLE_ADMIN.name(), ROLE_OPERATOR.name())
             .anyRequest().permitAll()
             .and()
             .logout().logoutSuccessUrl("/login").permitAll()

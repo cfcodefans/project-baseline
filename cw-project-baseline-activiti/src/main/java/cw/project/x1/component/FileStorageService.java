@@ -1,7 +1,10 @@
 package cw.project.x1.component;
 
+import cw.project.x1.component.repository.XFileUploadRecordRepo;
+import cw.project.x1.model.XFileUploadRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -51,6 +54,9 @@ public class FileStorageService {
         }
     }
 
+    @Autowired
+    private XFileUploadRecordRepo uploadRecordRepo;
+
     public String storeFile(MultipartFile file) {
         // Normalize file name
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -64,6 +70,8 @@ public class FileStorageService {
             // Copy file to the target location (Replacing existing file with the same name)
             Path targetLocation = fileStorageLocation.resolve(fileName);
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+
+            uploadRecordRepo.save(new XFileUploadRecord());
 
             return fileName;
         } catch (IOException ex) {

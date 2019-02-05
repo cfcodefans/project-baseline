@@ -2,6 +2,7 @@ package cw.project.x1.component.endpoint;
 
 import cw.project.x1.commons.ServiceRespDTO;
 import cw.project.x1.component.FileStorageService;
+import cw.project.x1.dto.UploadFileDTO;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
@@ -16,45 +17,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @RestController
-@RequestMapping(path = "/api/file", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/files", produces = MediaType.APPLICATION_JSON_VALUE)
 public class FileUploadCtrl {
     public static Logger log = LoggerFactory.getLogger(FileUploadCtrl.class);
-
-    public static class UploadFileDTO {
-        public String fileName;
-        public String fileDownloadUri;
-        public String fileType;
-        public long size;
-
-        public UploadFileDTO(String fileName, String fileDownloadUri, String fileType, long size) {
-            this.fileName = fileName;
-            this.fileDownloadUri = fileDownloadUri;
-            this.fileType = fileType;
-            this.size = size;
-        }
-
-        public UploadFileDTO() {
-
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (!(o instanceof UploadFileDTO)) return false;
-            UploadFileDTO that = (UploadFileDTO) o;
-            return Objects.equals(fileDownloadUri, that.fileDownloadUri);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(fileDownloadUri);
-        }
-    }
 
     @Autowired
     FileStorageService fss;
@@ -65,7 +34,7 @@ public class FileUploadCtrl {
         String fileName = fss.storeFile(file);
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-            .path("/downloadFile/")
+            .path("/files/")
             .path(fileName)
             .toUriString();
 

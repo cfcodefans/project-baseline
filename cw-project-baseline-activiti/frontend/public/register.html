@@ -35,8 +35,8 @@ address=yes就开启了点击地址直接跳转至地图的功能,在默认是�
         <div class="col-sm-12 col-md-10 col-lg-8 mx-auto">
             <div class="card card-signin my-5">
                 <div class="card-body">
-                    <h5 class="card-title text-center">新用户</h5>
-                    <form class="form-signin">
+                    <h5 class="card-title text-center">您好,新用户,请输入注册信息.</h5>
+                    <form class="form-signin" onsubmit="validateForm">
                         <div class="form-label-group">
                             <input name="username"
                                    type="text"
@@ -101,6 +101,17 @@ address=yes就开启了点击地址直接跳转至地图的功能,在默认是�
                                 <input type="checkbox" class="custom-control-input" id="ck_role_admin">
                                 <label class="custom-control-label" for="ck_role_admin">管理员</label>
                             </div>
+                        </div>
+                        <div class="input-group">
+                            <input name="userAvatar"
+                                   type="file"
+                                   id="inputUserAvatar"
+                                   class="form-control"
+                                   placeholder="头像"
+                                   autofocus>
+                            <label for="userAvatar">头像</label>
+                            <i class="fa fa-times-circle btn-clean" onclick="cleanInput(event)"></i>
+                            <img src="/frontend/resources/imgs/person-placeholder.jpg" />
                         </div>
                         <div class="input-group form-btns">
                             <button class="btn btn-lg btn-primary text-uppercase" type="submit">确认</button>

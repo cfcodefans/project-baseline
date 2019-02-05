@@ -42,10 +42,12 @@ public class SwaggerConfigs {
             .version("1.0")
             .build();
 
+        String contextPath = hostName + ":8888";
         return new Docket(DocumentationType.SWAGGER_2)
-            .host(hostName + ":8888")
+            .host(contextPath)
             .forCodeGeneration(true)
             .protocols(Set.of("http"))
+            .pathMapping("/")
             .apiInfo(apiInfo)
             .select()
             .apis(
