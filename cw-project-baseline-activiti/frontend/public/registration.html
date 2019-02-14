@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>X1 主页</title>
+    <title>X1 请注册新用户</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!--
     format-detection翻译成中文的意思是“格式检测”，顾名思义，它是用来检测html里的一些格式的，那关于meta的
@@ -36,32 +36,38 @@ address=yes就开启了点击地址直接跳转至地图的功能,在默认是�
     <link href="/frontend/resources/css/index.css" rel="stylesheet" />
     <link href="/frontend/resources/css/card.css" rel="stylesheet" />
     <script src="/frontend/resources/js/simple.js"></script>
+
+    <style>
+        #reg_form_div form {
+            padding: 24px;
+            background-color: white;
+            border-radius: 8px;
+            width: 600px;
+        }
+    </style>
 </head>
 
 <body>
-
-    <div id="wrap">
-        <div id="x1_pane">
-            <header>
-                <h1 class="h_title">X1 系统</h1>
-                <figure class="logo">
-                    <img src="/frontend/resources/imgs/person-placeholder.jpg" />
-                    <figcaption>欢迎 {user.name}</figcaption>
-                    <a href="/logout">登出</a>
-                </figure>
-                <nav id="x1_nav">
-                </nav>
-            </header>
-            <article id="x1_sect" style="overflow-y:auto">
-            </article>
+    <div class="ant-row-flex ant-row-flex-space-around ant-row-flex-middle">
+        <div class="ant-col-10">
+            <h1>欢迎您注册为X1系统的新用户</h1>
+        </div>
+    </div>
+    <div class="ant-row">
+        <div class="ant-col-12 ant-col-offset-6">
+            <div id="reg_form_div" class="ant-layout-content">
+            </div>
         </div>
     </div>
 
-<!--
+    <!--
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/popper.js/1.14.6/umd/popper.js"></script>
     <script src="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
 -->
+
+    <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment.js"></script>
+    <script src="https://cdn.bootcss.com/moment.js/2.24.0/locale/zh-cn.js"></script>
 
     <script src="https://cdn.bootcss.com/react/16.7.0/umd/react.production.min.js"></script>
     <script src="https://cdn.bootcss.com/react-dom/16.7.0/umd/react-dom.production.min.js"></script>
@@ -71,9 +77,11 @@ address=yes就开启了点击地址直接跳转至地图的功能,在默认是�
     <script src="https://cdn.bootcss.com/mobx-react/5.4.3/index.min.js"></script>
 
     <script src="https://cdn.bootcss.com/antd/3.13.2/antd-with-locales.min.js"></script>
+    <!--
+        <script src="https://cdn.bootcss.com/antd/3.13.2/antd.js"></script>
+    -->
 
-
-    <script src="/frontend/resources/js/index.js">    </script>
+    <script src="/frontend/resources/js/registration.js">    </script>
 </body>
 
 </html>

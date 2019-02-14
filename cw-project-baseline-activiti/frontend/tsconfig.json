@@ -9,6 +9,7 @@
     ],
     "jsx": "react",
     "outDir": "./resources/js/",
+    "strictPropertyInitialization": false,
     "strict": true,
     "moduleResolution": "node",
     "esModuleInterop": true,

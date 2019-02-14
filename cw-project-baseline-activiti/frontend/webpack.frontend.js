@@ -9,10 +9,10 @@ const CWD = FS.realpathSync(process.cwd())
 module.exports = {
     entry: {
         main: Path.resolve(CWD, "src/index.tsx"),
-        registration: Path.resolve(CWD, "src/registration.ts")
+        registration: Path.resolve(CWD, "src/registration.tsx")
     },
     output: {
-        filename: "index.js",
+        filename: "[name].js",
         path: Path.resolve(CWD, "resources/js"),
         publicPath: "/"
     },
@@ -43,6 +43,7 @@ module.exports = {
         "react": "React",
         "react-dom": "ReactDOM",
         // "mobx-react": "MobxReact",
-        "mobx": "mobx"
+        "mobx": "mobx",
+        "antd": "antd"
     }
 }
