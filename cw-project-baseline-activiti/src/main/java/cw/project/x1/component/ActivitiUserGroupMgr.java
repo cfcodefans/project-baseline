@@ -69,6 +69,7 @@ public class ActivitiUserGroupMgr implements UserGroupManager {
     }
 
     public enum Roles {
+        //todo
         ROLE_ADMIN, ROLE_OPERATOR, ROLE_VISITOR
     }
 }
